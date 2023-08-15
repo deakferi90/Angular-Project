@@ -1,0 +1,124 @@
+<div class="card card-container">
+  <div class="card-header">
+    {{ pageTitle }}
+  </div>
+</div>
+<div class="card-body">
+  <div class="filter-box-container">
+    <div>Filter by:{{ filterValue }}</div>
+    <div class="input-box">
+      <input
+        type="text"
+        class="input-el"
+        #inputElement
+        (keyup)="performFilter()"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h4>Filtered by</h4>
+    </div>
+  </div>
+  <table class="table" *ngIf="products.length">
+    <thead>
+      <tr class="table-row">
+        <th>
+          <button class="btn btn-primary" (click)="toggleImage()">
+            {{ showImage ? "Hide" : "Show" }} Image
+          </button>
+        </th>
+        <th>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="arrow-icon"
+            (click)="handleSort()"
+          >
+            <path d="M12 2l8 8h-6v11h-4v-11h-6z" />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="arrow-icon arrow-icon-reverse"
+            (click)="handleSortReverse()"
+          >
+            <path d="M12 2l8 8h-6v11h-4v-11h-6z" />
+          </svg>
+          Product
+        </th>
+        <th>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="arrow-icon"
+            (click)="sortByCode()"
+          >
+            <path d="M12 2l8 8h-6v11h-4v-11h-6z" />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="arrow-icon arrow-icon-reverse"
+            (click)="sortByCodeReverse()"
+          >
+            <path d="M12 2l8 8h-6v11h-4v-11h-6z" /></svg
+          >Code
+        </th>
+        <th>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="arrow-icon"
+            (click)="sortByDate()"
+          >
+            <path d="M12 2l8 8h-6v11h-4v-11h-6z" />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="arrow-icon arrow-icon-reverse"
+            (click)="sortByDateReverse()"
+          >
+            <path d="M12 2l8 8h-6v11h-4v-11h-6z" /></svg
+          >Available
+        </th>
+        <th>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="arrow-icon"
+            (click)="sortByPrice()"
+          >
+            <path d="M12 2l8 8h-6v11h-4v-11h-6z" />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="arrow-icon arrow-icon-reverse"
+            (click)="sortByPriceReverse()"
+          >
+            <path d="M12 2l8 8h-6v11h-4v-11h-6z" /></svg
+          >Price
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-row" *ngFor="let product of filteredProducts">
+        <td>
+          <img
+            *ngIf="showImage"
+            [src]="product.imageUrl"
+            [title]="product.productName"
+            [style.width.px]="imageWidth"
+            [style.margin.px]="imageMargin"
+          />
+        </td>
+        <td>{{ product.productName }}</td>
+        <td>{{ product.productCode }}</td>
+        <td>{{ product.releaseDate }}</td>
+        <td>{{ product.price }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

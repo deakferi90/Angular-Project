@@ -1,0 +1,21 @@
+.parent-chart {
+    display: grid;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.chart-container {
+    height: auto;
+    width: 600px;
+}
+
+@media screen and (max-width: 720px) {
+    .chart-container {
+        height: auto;
+        width: 400px;
+    }
+}
+
+.chart-text {
+    margin-top: 20px;
+}
